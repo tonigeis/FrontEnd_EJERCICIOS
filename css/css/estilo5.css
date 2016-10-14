@@ -1,0 +1,25 @@
+h1 {
+	color: red;
+	margin-bottom: 10px;
+	font-family: Arial;
+	text-align: center;
+	font-size: 35px;
+}
+
+p {
+	width: 800px;
+	font-family: Verdana;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.class1 {
+	border-top-color: red;
+	border-bottom-color: red;
+	border-right-color: green;
+	border-left-color: green;
+	border-style: solid;
+	background-color: gray;
+	color: white;
+	padding: 10px;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 35 - Pantalla Modal</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../estilos.css">
+	<style type="text/css">
+
+		body {
+  			font-family: Arial, sans-serif;
+  			text-align: center;
+  		}
+  		button {
+			padding: 10px;
+			background: #eee;
+		}
+		
+		a button{
+			text-decoration: none;
+			color: #000;
+		}
+		button a:hover{
+			text-decoration: none;
+			color: #000;
+		}
+		.overlay {
+		    position: fixed;
+		    top: 0;
+		  	bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.7);
+			transition: opacity 500ms;
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		.overlay:target {
+		  	visibility: visible;
+		  	opacity: 1;
+		}
+
+		.popup {
+		  	margin: 70px auto;
+			padding: 20px;
+			background: #fff;
+			border-radius: 5px;
+			width: 50%;
+			position: relative;
+			top: 65px;
+			transition: all 5s ease-in-out;
+		}
+
+		.popup h3 {
+		    text-align: left;
+		    color: #333;
+		    font-family: Tahoma, Arial, sans-serif;
+		}
+		.popup .close {
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    font-size: 12px;
+		}
+		.popup .close:hover {
+		    color: red;
+		    text-decoration: underline;
+		}
+		.popup .content {
+		    text-align: left;
+		    max-height: 120px;
+		    overflow: auto;
+		}
+
+	</style>
+</head>
+<body>
+
+	<!--Menú de navegación-->
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+	    	<button type="button" class="navbar-toggle" data-toggle="collapse"
+	            data-target=".navbar-ex1-collapse">
+	        	<span class="sr-only">Desplegar navegación</span>
+	      		<span class="icon-bar"></span>
+	      		<span class="icon-bar"></span>
+	      		<span class="icon-bar"></span>
+	    	</button>
+	    	<a class="navbar-brand" href="../index.html">Volver al Menú de ejercicios</a>
+	  	</div>
+	  	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		    <ul class="nav navbar-nav">
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../html/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../html/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../html/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../html/ejercicio4.html">Ejercicio #4</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">CSS <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li class="dropdown-submenu">
+			        		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ejercicios CSS </a>
+			        		<ul class="dropdown-menu">
+			        			<li><a href="../css/ejercicio5.html">Ejercicio #5</a></li>
+					          	<li><a href="../css/ejercicio7.html">Ejercicio #7</a></li>
+					          	<li><a href="../css/ejercicio9.html">Ejercicio #9</a></li>
+					          	<li><a href="../css/ejercicio10.html">Ejercicio #10</a></li>
+					          	<li><a href="../css/ejercicio11.html">Ejercicio #11</a></li>
+					          	<li><a href="../css/ejercicio12.html">Ejercicio #12</a></li>
+			        		</ul>
+			        	</li>
+			        	<li class="divider"></li>
+			          	<li class="dropdown-submenu">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsive con Media Queries </a>
+			          		<ul class="dropdown-menu">
+			        			<li><a href="../css/mediaqueries/ejercicio13.html">Ejercicio #13</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio14.html">Ejercicio #14</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio15.html">Ejercicio #15</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio15bis.html">Ejercicio #15 (BIS)</a></li>
+			        		</ul>
+			          	</li>
+			          	<li class="divider"></li>
+			          	<li class="dropdown-submenu">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsive con Bootstrap </a>
+			          		<ul class="dropdown-menu">
+			        			<li><a href="../css/bootstrap/ejercicio16.html">Ejercicio #16</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio17.html">Ejercicio #17</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio18.html">Ejercicio #18</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio19.html">Ejercicio #19</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio20.html">Ejercicio #20</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio21a.html">Ejercicio #21a</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio21b.html">Ejercicio #21b</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio22.html">Ejercicio #22</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio23.html">Ejercicio #23</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio24.html">Ejercicio #24</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio25.html">Ejercicio #25</a></li>
+			        		</ul>
+			          	</li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Multimedia <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="ejercicio26.html">Ejercicio #26</a></li>
+			          	<li><a href="ejercicio27.html">Ejercicio #27</a></li>
+			          	<li><a href="ejercicio27bis.html">Ejercicio #27 BIS</a></li>
+			          	<li><a href="ejercicio28.html">Ejercicio #28</a></li>
+			          	<li><a href="ejercicio29.html">Ejercicio #29</a></li>
+			          	<li><a href="ejercicio30_hover.html">Ejercicio #30 con Hover</a></li>
+			          	<li><a href="ejercicio30_target.html">Ejercicio #30 con Target</a></li>
+			          	<li><a href="ejercicio31.html">Ejercicio #31</a></li>
+			          	<li><a href="ejercicio32.html">Ejercicio #32</a></li>
+			          	<li><a href="ejercicio33.html">Ejercicio #33</a></li>
+			          	<li><a href="ejercicio34.html">Ejercicio #34</a></li>
+			          	<li><a href="ejercicio35.html">Ejercicio #35</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">JavaScript <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../javascript/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../javascript/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../javascript/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../javascript/ejercicio4.html">Ejercicio #4</a></li>
+			          	<li><a href="../javascript/ejercicio5.html">Ejercicio #5</a></li>
+			          	<li><a href="../javascript/ejercicio6.html">Ejercicio #6</a></li>
+			          	<li><a href="../javascript/ejercicio7.html">Ejercicio #7</a></li>
+			          	<li><a href="../javascript/ejercicio8.html">Ejercicio #8</a></li>
+			          	<li><a href="../javascript/ejercicio9.html">Ejercicio #9</a></li>
+			          	<li><a href="../javascript/ejercicio10.html">Ejercicio #10</a></li>
+			          	<li><a href="../javascript/ejercicio11.html">Ejercicio #11</a></li>
+			          	<li><a href="../javascript/ejercicio12.html">Ejercicio #12</a></li>
+			          	<li><a href="../javascript/ejercicio12bis.html">Ejercicio #12 BIS</a></li>
+			          	<li><a href="../javascript/ejercicio13.html">Ejercicio #13</a></li>
+			          	<li><a href="../javascript/ejercicio14.html">Ejercicio #14</a></li>
+			          	<li><a href="../javascript/ejercicio15.html">Ejercicio #15</a></li>
+			          	<li><a href="../javascript/ejercicio15b.html">Ejercicio #15b</a></li>
+			          	<li><a href="../javascript/ejercicio15c.html">Ejercicio #15c</a></li>
+			          	<li><a href="../javascript/ejercicio16.html">Ejercicio #16</a></li>
+			          	<li><a href="../javascript/ejercicio17.html">Ejercicio #17</a></li>
+			          	<li><a href="../javascript/ejercicio18.html">Ejercicio #18</a></li>
+			          	<li><a href="../javascript/ejercicio19.html">Ejercicio #19</a></li>
+			          	<li><a href="../javascript/ejercicio20.html">Ejercicio #20</a></li>
+			          	<li><a href="../javascript/ejercicio_combo.html">Ejercicio #Extra - COMBO</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">AJAX <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../ajax/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../ajax/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../ajax/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../ajax/ejercicio4.html">Ejercicio #4 con XML</a></li>
+			          	<li><a href="../ajax/ejercicio4json.html">Ejercicio #4 con JSON</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">JQuery <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../jquery/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../jquery/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../jquery/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../jquery/ejercicio4.html">Ejercicio #4</a></li>
+			          	<li><a href="../jquery/ejercicio5.html">Ejercicio #5</a></li>
+			          	<li><a href="../jquery/ejercicio6.html">Ejercicio #6</a></li>
+			          	<li><a href="../jquery/ejercicio7.html">Ejercicio #7</a></li>
+			        </ul>
+		      	</li>
+		    </ul>
+	    </div>
+	</nav>
+
+	<!-- Ejercicio 35 -->
+
+	<a href="#popup"><button>Abrir la ventana modal</button></a>
+	<div id="popup" class="overlay">
+		<div class="popup">
+			<h3>Modal box</h3>
+			<a class="close" href="#">Cerrar</a>
+			<div class="content">
+				Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+				Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.
+			</div>
+		</div>
+	</div>
+</body>
+</html>

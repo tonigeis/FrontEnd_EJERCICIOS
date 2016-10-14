@@ -1,0 +1,68 @@
+body { 
+    font: .8em Verdana, Arial, Helvetica, sans-serif; 
+} 
+#menu { 
+    width: 100px; 
+    padding: 20px; 
+    border: 1px solid #333; 
+    background-color: #ccc; 
+} 
+#menu ul { 
+    position: relative; 
+    margin: 0; 
+    padding: 0; 
+    list-style: none; 
+} 
+#menu ul li { 
+    width: 70px; 
+    height: 20px; 
+    margin: 0 0 30px 0; 
+} 
+#menu ul li:last-child { 
+    margin: 0; 
+} 
+#menu ul li a.enlace { 
+    position: absolute; 
+    z-index: 100; 
+    display: block; 
+    text-decoration: none; 
+    color: black; 
+}
+
+
+
+#menu ul li div p { 
+    width: 300px; 
+}
+
+/* Las transiciones */
+
+#menu ul li div { 
+    position: relative; 
+    z-index: 50; 
+    left: 0; 
+    top: 0; 
+    width: 330px; 
+    height: 165px; 
+    border: 1px solid #fff; 
+    opacity: 0;
+    background-color: black; 
+    padding: 15px; 
+    overflow: hidden; 
+    color: white; 
+    text-align: right; 
+    -moz-transition: all 1s ease-in; 
+    -webkit-transition: all 1s ease-in; 
+    -o-transition: all 1s ease-in; 
+    transition: all 1s ease-in; 
+}
+
+
+#menu ul li a:hover{ 
+    color: white; 
+}
+
+#menu ul li div:target{
+    left: 90px;
+    opacity: 1;
+}

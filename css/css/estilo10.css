@@ -1,0 +1,52 @@
+.contact_table{
+	width: 900px;
+	margin: 0 auto;
+	background: black;
+	padding: 10px 20px;
+	margin-top: 20px;
+}
+
+.contact_table tr td{
+	border: 1px solid black;
+}
+
+.contact_table tr td:first-child{
+	background: blue;
+	color: white;
+	text-align: right;
+}
+
+.contact_table tr td:last-child{
+	background: red;
+}
+
+.contact_table textarea{
+	resize: none;
+}
+
+.lang_table{
+	background: #00FFFF; 
+	padding: 5px; 
+	margin: 3px auto;
+}
+
+.lang_table_td{
+	background: #00FFFF !important; 
+	color: black !important; 
+	text-align: left !important;
+	border: 0 !important;
+	padding: 2px 3px;
+}
+
+.adjust_width{
+	width: 99%;
+}
+
+
+
+
+
+
+
+
+

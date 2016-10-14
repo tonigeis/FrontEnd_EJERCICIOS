@@ -1,0 +1,49 @@
+.caja{
+	background: #c4db0d;
+	margin-bottom: 30px;
+	width: 100%;
+	display: inline-block;
+}
+
+.caja img{
+	width: 100%;
+	float: left;
+}
+
+.contenido{
+	text-align: center;
+	float: left;
+	width: 100%;
+}
+
+.contenido h1{
+	color: white;
+	padding-left: 10px;
+}
+
+.contenido p{
+	padding: 0 15px;
+}
+
+@media screen and (min-width: 768px){
+	.caja{
+		width: 100%;
+		display: inline-block;
+	}
+	.caja img{
+		float: left;
+		width: 50%;
+	}
+	.contenido{
+		float: left;
+		width: 50%;
+		text-align: left;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.contenedor{
+		width: 1024px;
+		margin: 0 auto;
+	}
+}

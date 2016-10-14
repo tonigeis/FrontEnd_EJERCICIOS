@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 20 - JS - Validaciones en Formularios con DIVS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../estilos.css">
+	<style type="text/css">
+
+		*{
+			font: normal bold 12px Verdana, Arial;
+		}
+
+		body{
+		    background-color: #FFF8DC;
+		}
+
+		form.contacto{
+			width: 400px;
+		    margin: 0 auto;
+			padding: 15px;
+			margin-top: 25px;
+			background-color: white;
+			border: 1px solid #A52A2A;
+			border-radius: 8px;
+			box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+		}
+
+		.contacto div{
+			margin-bottom: 15px;
+		}
+
+		.contacto label{
+			display: block;
+		}
+
+		.contacto input{
+			padding: 4px;
+			margin-top: 3px;
+			border-radius: 4px;
+			width: 212px;
+		}
+
+		#dia, #mes{
+			width: 20px;
+		}
+
+		#ano{
+			width: 40px;
+		}
+
+		input#privacidad{
+			width: 15px;
+		}
+
+		.contacto h5{
+			color: red;
+			margin-top: 5px;
+		}
+
+		.contacto p{
+			color: green;
+			margin-top: 5px;
+		}
+
+	</style>
+	<script type="text/javascript">
+
+		function validacion() {
+			var ret = true;
+
+			var nombre = document.getElementById("nombre").value;
+			var primerapellido = document.getElementById("primerapellido").value;
+			var segundoapellido = document.getElementById("segundoapellido").value;
+			var telefono = document.getElementById("telefono").value;
+			var ano = document.getElementById("ano").value; 
+			var mes = document.getElementById("mes").value; 
+			var dia = document.getElementById("dia").value;
+			var email = document.getElementById("email").value;
+			var privacidad = document.getElementById("privacidad");
+
+			var validaNombre = document.getElementById("validaNombre");
+			var validaApellido = document.getElementById("validaApellido");
+			var valida2Apellido = document.getElementById("valida2Apellido");
+			var validaTelefono = document.getElementById("validaTelefono");
+			var validaFecha = document.getElementById("validaFecha");
+			var validaEmail = document.getElementById("validaEmail");
+			var validaPrivacidad = document.getElementById("validaPrivacidad");
+
+			var regExpTelefono = /^([0-9]+){9}$/;
+			var regExpEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+
+			if (nombre == null || nombre.length == 0) {
+				validaNombre.innerHTML = "<h5>El campo 'Nombre' debe rellenarse</h5>";
+				ret = false;
+			} 
+			else{
+				validaNombre.innerHTML = "<p>Correcto</p>";
+			}
+
+			if (primerapellido == null || primerapellido.length == 0) {
+				validaApellido.innerHTML = "<h5>El campo 'Primer apellido' debe rellenarse</h5>";
+				ret = false;
+			}
+			else{
+				validaApellido.innerHTML = "<p>Correcto</p>";
+			}
+
+			if (segundoapellido == null || segundoapellido.length == 0) {
+				valida2Apellido.innerHTML = "<h5>El campo 'Segundo apellido' debe rellenarse</h5>";
+				ret = false;
+			}
+			else{
+				valida2Apellido.innerHTML = "<p>Correcto</p>";
+			}
+
+			if (!regExpTelefono.test(telefono)) {
+				validaTelefono.innerHTML = "<h5>El campo 'Teléfono' debe contener 9 cifras</h5>";
+				ret = false;
+			}
+			else{
+				validaTelefono.innerHTML = "<p>Correcto</p>";
+			}
+
+			//La fecha no es un campo obligatorio
+			if (dia.length != 0 && mes.length != 0 && ano.length != 0) {
+				var fecha = new Date(ano, mes, dia);
+
+				if (isNaN(fecha)) {
+					validaFecha.innerHTML = "<h5>La fecha de nacimiento indicada no es correcta</h5>";
+					ret = false;
+				}
+				else{
+					validaFecha.innerHTML = "<p>Correcto</p>";
+				}
+			} 
+			else {
+				validaFecha.innerHTML = "";
+			}
+			
+
+			//El email no es un campo obligatorio
+			if (email != null && email.length != 0) {
+				if (!regExpEmail.test(email)) {
+					validaEmail.innerHTML = "<h5>El E-mail indicado no es correcto</h5>";
+					ret = false;
+				} 
+				else {
+					validaEmail.innerHTML = "<p>Correcto</p>";
+				}
+			}
+			else{
+				validaEmail.innerHTML = "";
+			}
+
+			if (!privacidad.checked) {
+				validaPrivacidad.innerHTML = "<h5>La cláusula de privacidad debe estar marcada</h5>";
+				ret = false;
+			}
+			else{
+				validaPrivacidad.innerHTML = "<p>Correcto</p>";
+			}
+
+			return ret;
+		}
+
+	</script>
+</head>
+<body>
+	<!--Menú de navegación-->
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+	    	<button type="button" class="navbar-toggle" data-toggle="collapse"
+	            data-target=".navbar-ex1-collapse">
+	        	<span class="sr-only">Desplegar navegación</span>
+	      		<span class="icon-bar"></span>
+	      		<span class="icon-bar"></span>
+	      		<span class="icon-bar"></span>
+	    	</button>
+	    	<a class="navbar-brand" href="../index.html">Volver al Menú de ejercicios</a>
+	  	</div>
+	  	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		    <ul class="nav navbar-nav">
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">HTML <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../html/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../html/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../html/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../html/ejercicio4.html">Ejercicio #4</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">CSS <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li class="dropdown-submenu">
+			        		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ejercicios CSS </a>
+			        		<ul class="dropdown-menu">
+			        			<li><a href="../css/ejercicio5.html">Ejercicio #5</a></li>
+					          	<li><a href="../css/ejercicio7.html">Ejercicio #7</a></li>
+					          	<li><a href="../css/ejercicio9.html">Ejercicio #9</a></li>
+					          	<li><a href="../css/ejercicio10.html">Ejercicio #10</a></li>
+					          	<li><a href="../css/ejercicio11.html">Ejercicio #11</a></li>
+					          	<li><a href="../css/ejercicio12.html">Ejercicio #12</a></li>
+			        		</ul>
+			        	</li>
+			        	<li class="divider"></li>
+			          	<li class="dropdown-submenu">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsive con Media Queries </a>
+			          		<ul class="dropdown-menu">
+			        			<li><a href="../css/mediaqueries/ejercicio13.html">Ejercicio #13</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio14.html">Ejercicio #14</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio15.html">Ejercicio #15</a></li>
+					          	<li><a href="../css/mediaqueries/ejercicio15bis.html">Ejercicio #15 (BIS)</a></li>
+			        		</ul>
+			          	</li>
+			          	<li class="divider"></li>
+			          	<li class="dropdown-submenu">
+			          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsive con Bootstrap </a>
+			          		<ul class="dropdown-menu">
+			        			<li><a href="../css/bootstrap/ejercicio16.html">Ejercicio #16</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio17.html">Ejercicio #17</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio18.html">Ejercicio #18</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio19.html">Ejercicio #19</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio20.html">Ejercicio #20</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio21a.html">Ejercicio #21a</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio21b.html">Ejercicio #21b</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio22.html">Ejercicio #22</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio23.html">Ejercicio #23</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio24.html">Ejercicio #24</a></li>
+					          	<li><a href="../css/bootstrap/ejercicio25.html">Ejercicio #25</a></li>
+			        		</ul>
+			          	</li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Multimedia <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../multimedia/ejercicio26.html">Ejercicio #26</a></li>
+			          	<li><a href="../multimedia/ejercicio27.html">Ejercicio #27</a></li>
+			          	<li><a href="../multimedia/ejercicio27bis.html">Ejercicio #27 BIS</a></li>
+			          	<li><a href="../multimedia/ejercicio28.html">Ejercicio #28</a></li>
+			          	<li><a href="../multimedia/ejercicio29.html">Ejercicio #29</a></li>
+			          	<li><a href="../multimedia/ejercicio30_hover.html">Ejercicio #30 con Hover</a></li>
+			          	<li><a href="../multimedia/ejercicio30_target.html">Ejercicio #30 con Target</a></li>
+			          	<li><a href="../multimedia/ejercicio31.html">Ejercicio #31</a></li>
+			          	<li><a href="../multimedia/ejercicio32.html">Ejercicio #32</a></li>
+			          	<li><a href="../multimedia/ejercicio33.html">Ejercicio #33</a></li>
+			          	<li><a href="../multimedia/ejercicio34.html">Ejercicio #34</a></li>
+			          	<li><a href="../multimedia/ejercicio35.html">Ejercicio #35</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">JavaScript <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="ejercicio4.html">Ejercicio #4</a></li>
+			          	<li><a href="ejercicio5.html">Ejercicio #5</a></li>
+			          	<li><a href="ejercicio6.html">Ejercicio #6</a></li>
+			          	<li><a href="ejercicio7.html">Ejercicio #7</a></li>
+			          	<li><a href="ejercicio8.html">Ejercicio #8</a></li>
+			          	<li><a href="ejercicio9.html">Ejercicio #9</a></li>
+			          	<li><a href="ejercicio10.html">Ejercicio #10</a></li>
+			          	<li><a href="ejercicio11.html">Ejercicio #11</a></li>
+			          	<li><a href="ejercicio12.html">Ejercicio #12</a></li>
+			          	<li><a href="ejercicio12bis.html">Ejercicio #12 BIS</a></li>
+			          	<li><a href="ejercicio13.html">Ejercicio #13</a></li>
+			          	<li><a href="ejercicio14.html">Ejercicio #14</a></li>
+			          	<li><a href="ejercicio15.html">Ejercicio #15</a></li>
+			          	<li><a href="ejercicio15b.html">Ejercicio #15b</a></li>
+			          	<li><a href="ejercicio15c.html">Ejercicio #15c</a></li>
+			          	<li><a href="ejercicio16.html">Ejercicio #16</a></li>
+			          	<li><a href="ejercicio17.html">Ejercicio #17</a></li>
+			          	<li><a href="ejercicio18.html">Ejercicio #18</a></li>
+			          	<li><a href="ejercicio19.html">Ejercicio #19</a></li>
+			          	<li><a href="ejercicio20.html">Ejercicio #20</a></li>
+			          	<li><a href="ejercicio_combo.html">Ejercicio #Extra - COMBO</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">AJAX <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../ajax/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../ajax/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../ajax/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../ajax/ejercicio4.html">Ejercicio #4 con XML</a></li>
+			          	<li><a href="../ajax/ejercicio4json.html">Ejercicio #4 con JSON</a></li>
+			        </ul>
+		      	</li>
+		      	<li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">JQuery <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			        	<li><a href="../jquery/ejercicio1.html">Ejercicio #1</a></li>
+			          	<li><a href="../jquery/ejercicio2.html">Ejercicio #2</a></li>
+			          	<li><a href="../jquery/ejercicio3.html">Ejercicio #3</a></li>
+			          	<li><a href="../jquery/ejercicio4.html">Ejercicio #4</a></li>
+			          	<li><a href="../jquery/ejercicio5.html">Ejercicio #5</a></li>
+			          	<li><a href="../jquery/ejercicio6.html">Ejercicio #6</a></li>
+			          	<li><a href="../jquery/ejercicio7.html">Ejercicio #7</a></li>
+			        </ul>
+		      	</li>
+		    </ul>
+	    </div>
+	</nav>
+
+	<!--Ejercicio 20 -->
+	<form class="contacto" action="" method="" id="formulario" name="" onsubmit="return validacion()">
+		<div>
+			<label for="nombre">Nombre *:</label>
+			<input type="text" name="nombre" id="nombre">
+			<div id="validaNombre"></div>
+		</div>
+		<div>
+			<label for="primerapellido">Primer apellido *:</label>
+			<input type="text" name="primerapellido" id="primerapellido">
+			<div id="validaApellido"></div>
+		</div>
+		<div>
+			<label for="segundoapellido">Segundo apellido *:</label>
+			<input type="text" name="primerapellido" id="segundoapellido">
+			<div id="valida2Apellido"></div>
+		</div>
+		<div>
+			<label for="telefono">Teléfono *:</label>
+			<input type="text" name="telefono" id="telefono" maxlength="9">
+			<div id="validaTelefono"></div>
+		</div>
+		<div>
+			<label>Fecha de nacimiento:</label>
+			Día: <input type="text" name="dia" id="dia" maxlength="2">
+			Mes: <input type="text" name="mes" id="mes" maxlength="2">
+			Año: <input type="text" name="ano" id="ano" maxlength="4">
+			<div id="validaFecha"></div>
+		</div>
+		<div>
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email">
+			<div id="validaEmail"></div>
+		</div>
+		<div>
+			<input type="checkbox" value="privacidad" name="privacidad" id="privacidad"/> He leído y acepto los términos y condiciones 
+			<div id="validaPrivacidad"></div>
+		</div>
+		<input type="submit" value="Enviar">
+	</form>
+
+
+
+
+
+	<!--<form action="" method="" id="" name="" onsubmit="return validacion()">
+		<label for="nombre">Nombre *:</label>
+		<input type="text" name="nombre" id="nombre">
+		<div id="validaNombre"></div>
+		<label for="primerapellido">Primer apellido *:</label>
+		<input type="text" name="primerapellido" id="primerapellido">
+		<div id="validaApellido"></div>
+		<label for="segundoapellido">Segundo apellido *:</label>
+		<input type="text" name="primerapellido" id="segundoapellido">
+		<div id="valida2Apellido"></div>
+		<label for="telefono">Teléfono *:</label>
+		<input type="text" name="telefono" id="telefono">
+		<div id="validaTelefono"></div>
+
+		
+
+		<label>Fecha de nacimiento:</label>
+		<input type="text" name="fecha" id="fecha">
+
+		<div id="validaFecha"></div>
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email">
+		<div id="validaEmail"></div>
+		<input type="checkbox" value="privacidad" name="privacidad" id="privacidad"/> He leído la política de privacidad *<br /><br />
+		<div id="validaPrivacidad"></div>
+		<input type="submit" value="Enviar">
+	</form>-->
+</body>
+</html>

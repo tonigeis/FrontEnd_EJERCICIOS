@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menú desplegable con jQuery en 5 minutos</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+ul li {
+  float: left;
+  width: 33%;
+  background: #F4F4F4;
+}
+ul li a {
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #7C7C7C;
+  color: #333;
+  display: block;
+  padding: .3em;
+  text-decoration: none;
+}
+
+/*Submenús*/
+ul li ul {
+  display: none;
+}
+
+ul li ul li {
+   width:100%;
+   background-color: red;
+}
+
+ul li ul li a:hover {
+   background-color: black;
+}
+
+ul li ul li a {
+   color: white;   
+}
+</style>
+<script>
+
+$(document).ready(function(){
+  $('ul li').has('ul').hover(function(e){ //funcion de entrada del hover, le pasamos el evento 
+    $(this).find('ul').css({display: "block"});
+  },
+  function(e){ //funcion de salida del hover
+    $(this).find('ul').css({display: "none"});
+  });
+});
+
+</script>
+
+
+</head>
+
+<body>
+<h1>Menú desplegable con jQuery en 5 minutos</h1>
+<ul>
+   <li><a href="#">Inicio</a>
+      <ul>
+         <li><a href="#11">¿Qué es jQuery?</a></li>
+         <li><a href="#12">¿Por qué debería usarlo?</a></li>
+         <li><a href="#13">¿Por qué tengo que seguir poniendo elementos de lista?</a></li>
+      </ul>
+   </li>
+   <li><a href="#">Ejemplos</a>
+      <ul>
+         <li><a href="#21">Menú desplegable</a></li>
+         <li><a href="#22">Fade-in, fade-out</a></li>
+      </ul>
+   </li>
+   <li><a href="#">Contacto</a></li>
+</ul>
+</body>
+</html>

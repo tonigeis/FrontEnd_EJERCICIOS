@@ -1,0 +1,54 @@
+body, html{
+	height: 100%;
+}
+
+#container {
+	height: 100%;
+}
+
+.img-visible{
+	display: none; 
+}
+
+h1, h3, h4{
+	color: red;
+}
+
+@media screen and (min-width: 768px) {
+	.diseno {
+		float: left;
+		width: 48%;
+		padding-right: 10px;
+	}
+	.saltar {
+		clear: both;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	h1{
+		border-bottom: 3px solid red;
+	}
+	.img-visible{
+		display: block;
+		float: right;
+		width: 25%;
+	}
+	.dudas{
+		float: left;
+		width: 30%;
+		height: 100%;
+		padding-top: 15px;
+		padding-right: 15px;
+	}
+	.quienessomos{
+		float: left;
+		width: 65%;
+	}
+	.diseno {
+		width: 15%;
+	}
+	.saltar{
+		clear: none;
+	}
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Video de fondo con HTML5 y Javascript</title>
+        <style type="text/css">
+            body {
+                    font-family: "Arial", Helvetica, sans-serif;
+                    color:#222;
+                    height:100%;
+                    width:100%;
+                }
+            .center{
+                    position:absolute;
+                    width:500px;
+                    height:500px;
+                    top:50%;
+                    left:50%;
+                    margin-left:-250px;
+                    margin-top:-250px;
+                    background-color: rgba(255, 255, 255, 0.30);
+                }
+            h1 {font-size:20px;background:#222;color:#fff;}
+            h2 {font-size:18px;font-weight:bold;padding-left:10px;padding-right:10px;}
+
+            #video{
+                position: absolute; 
+                bottom: 0px; 
+                right: 0px; 
+                min-width: 100%; 
+                min-height: 100%; 
+                width: auto; 
+                height: auto; 
+                z-index: -1000; 
+                overflow: hidden; 
+                }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $( "#foo" ).delay(10000).slideDown( 300 ).fadeIn( 1000 );
+                $( "#foo" ).css("background-color","rgba(255,0,0,0.30)");
+                $('#alternar-respuesta-ej1').click(function(){
+                        $('#respuesta-ej1').toggle('slow');
+                });
+            });
+
+
+
+        </script>
+
+    </head>
+<body>
+	<video id="video" autoplay="autoplay" preload="auto">
+		 <source src="video_salesians.mp4" type="video/mp4"></source>
+	</video>		
+	
+	<div class="center" id="foo" style="display:none;">
+		<h1 align="center">Video de fondo con HTML5 y Javascript</p></h1>	
+		<h2><p>Redimensiona la ventana para ver como el vídeo se adapta a cualquier resolución.</p></h2>
+        <p>¿Puedo ocultar esta respuesta?<BR> (<a href="#" id="alternar-respuesta-ej1">Comprueba el resultado</a>)
+         <div id="respuesta-ej1" style="display:none">
+            <BR>
+            <p>Nos atrevemos a algo parecido a ¿<A HREF="http://lab.rtve.es/masterchef/plato/">MasterChef</A>?</p> 
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Pn7MhCHGL_9YmrC_1IlfwKOZdbZs3u72bIJ-dp7FOGnkHseb" width=200px;> 
+        </div>
+	</div> 
+</body>
+</html>

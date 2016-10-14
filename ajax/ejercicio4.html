@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 4 AJAX y XML - Listas Desplegables</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		var READY_STATE_COMPLETE=4;
+		var peticion_http = null;
+		
+		var provinciasCombo; 
+ 
+		function inicializa_xhr() {
+			if(window.XMLHttpRequest) {
+			    return new XMLHttpRequest(); 
+			}
+		}
+
+		function crea_query_string() {
+			return "provincia=" + encodeURIComponent(provinciasCombo.options[provinciasCombo.selectedIndex].value) +
+			    "&nocache=" + Math.random();
+		}
+
+		function cargaProvincias() {
+			if(peticion_http.readyState == READY_STATE_COMPLETE) {
+				if(peticion_http.status == 200) {
+				    provinciasCombo = document.getElementById("provincias");
+
+				    var documento_xml = peticion_http.responseXML;
+				    var provincias = documento_xml.getElementsByTagName("provincias")[0];
+				    var provincia = provincias.getElementsByTagName("provincia");
+
+				    for (i in provincia) {
+				    	var option = document.createElement("option");
+				    	option.text = provincia[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+				    	option.value = provincia[i].getElementsByTagName("codigo")[0].firstChild.nodeValue;
+						provinciasCombo.add(option);
+				    }	
+				}
+			}
+		}
+
+		function cargaMunicipios() {
+			if(peticion_http.readyState == READY_STATE_COMPLETE) {
+				if(peticion_http.status == 200) {			
+				    var municipiosCombo = document.getElementById("municipios");
+
+				    //Elimina la lista anterior cargada
+				    municipiosCombo.options.length = 0;
+
+				    var documento_xml = peticion_http.responseXML;
+				    var municipios = documento_xml.getElementsByTagName("municipios")[0];
+				    var municipio = municipios.getElementsByTagName("municipio");
+
+				    for (i in municipio) {
+				    	var option = document.createElement("option");
+				    	option.text = municipio[i].getElementsByTagName("nombre")[0].firstChild.nodeValue;
+						municipiosCombo.add(option);
+				    }	
+				}
+			}
+		}
+
+		function seleccionaProvincia() {
+			peticion_http = inicializa_xhr();
+			if (peticion_http) {
+				peticion_http.onreadystatechange = cargaMunicipios;
+			    peticion_http.open("POST", "servidorAJAX/cargaMunicipiosXML.php", true);
+			    peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			    var query_string = crea_query_string();
+			    peticion_http.send(query_string);
+			}
+		}
+
+		window.onload = function(){
+			peticion_http = inicializa_xhr();
+			if(peticion_http) {
+			    peticion_http.onreadystatechange = cargaProvincias;
+			    peticion_http.open("POST", "servidorAJAX/cargaProvinciasXML.php", true);
+			    peticion_http.send("nocache=" + Math.random());
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Listas desplegables con AJAX y XML - Provincias y Municipios</h1>
+	<label for="provincias">Provincias: </label>
+	<select id="provincias" name="provincias" onchange="seleccionaProvincia()">
+		<option>-Selecciona-</option>
+	</select><br /><br />
+	<label for="municipios">Municipios: </label>
+	<select id="municipios" name="municipios">
+		<option>- Selecciona una provincia -</option>
+	</select>
+</body>
+</html>
